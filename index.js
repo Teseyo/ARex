@@ -73,17 +73,9 @@ export default class hello_vr extends React.Component {
           change: () => { surfaceModule.start() }
         },
         {
-          text: 'Настройки',
-          change: '#'
-        },
-        {
           text: 'О нас',
           change: '#'
         },
-        {
-          text: 'Выход',
-          change: '#'
-        }
       ]
     };
   }
