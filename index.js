@@ -18,7 +18,8 @@ class InfoPanel extends React.Component {
       name: 'Vos.png',
       width: 200,
       height: 100,
-      show: false
+      show: false,
+
     }
   }
 
@@ -54,10 +55,10 @@ class InfoPanel extends React.Component {
       <View style={styles.display_panel} onEnter={() => { this.transformDisplay(this.props.id) }} onExit={() => { this.resetPanel(this.props.id) }}>
         <Image source={asset(`${img.name}`)} style={{ height: img.height, width: img.width }} />
         {this.state.img.show ?
-          <View style={styles.textVeiwBlock}>
+          <View style={styles.textVeiwBlock} >
             <Text style={styles.textView}>{this.props.text}</Text>
           </View>
-          : <Text></Text>}
+          : <View></View>}
       </View>
     )
   }
@@ -76,17 +77,19 @@ export default class hello_vr extends React.Component {
           text: 'О нас',
           change: '#'
         },
-      ]
+      ],
+      img: {
+        name: ['ARex.png', 'Group422.png']
+      }
     };
   }
   render() {
-
+    let { img } = this.state
     return (
       <View style={styles.panel}>
-        <View style={styles.title_box}>
-          <Text style={styles.title}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          </Text>
+        <View style={styles.up_box}>
+          <Image source={asset(`${img.name[0]}`)} style={{ height: 25, width: 50 }} />
+          <Image source={asset(`${img.name[1]}`)} style={{ height: 25, width: 50, cursor: 'pointer' }} />
         </View>
         <View style={styles.menu_list}>
           {this.state.object.map((item, index) => (
@@ -116,9 +119,8 @@ const styles = StyleSheet.create({
     marginTop: 50,
   },
   text: {
-    color: 'black',
+    color: 'white',
     fontSize: 25,
-    marginTop: 10
   },
   title: {
     color: 'black',
@@ -136,6 +138,14 @@ const styles = StyleSheet.create({
   },
   textView: {
     color: 'black'
+  },
+  button_castom: {
+    width: 150,
+    marginTop: 10
+  },
+  up_box: {
+    justifyContent: 'space-between',
+    flexDirection: 'row'
   }
 });
 
