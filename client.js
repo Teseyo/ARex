@@ -87,9 +87,11 @@ class surfaceModule extends Module {
     );
   }
   end() {
-    r360.detachRoot(PhotoPanelFirst,)
+
+    r360.detachRoot(PhotoPanelFirst)
     r360.detachRoot(PhotoPanelSecond)
     r360.detachRoot(PhotoPanelTree)
+
   }
   startChangeBackground(namePage) {
     r360.compositor.setBackground(r360.getAssetURL(`${namePage}.jpg`));

@@ -10,8 +10,6 @@ import {
   asset
 } from 'react-360';
 
-import MuseumInfo from './interface/Museum'
-
 const surfaceModule = NativeModules.surfaceModule;
 
 class InfoPanel extends React.Component {
@@ -88,6 +86,7 @@ export default class hello_vr extends React.Component {
       },
       show: true,
       showExhibitsList: true,
+      showButton: false,
       exhibitsArray: [
         {
           name: 'Экспонат1',
@@ -105,12 +104,16 @@ export default class hello_vr extends React.Component {
           image: '3.jpg'
         },
         {
-          name: 'Экспонаты4',
+          name: 'Экспонат4',
           OnChange: () => { surfaceModule.startChangeBackground('sam') },
           image: '4.jpg'
         },
       ]
     };
+  }
+  componentDidMount() {
+    surfaceModule.start()
+    surfaceModule.end()
   }
   render() {
     let { img } = this.state
@@ -120,6 +123,7 @@ export default class hello_vr extends React.Component {
           <View style={styles.panel}>
             <View style={styles.up_box}>
               <Image source={asset(`${img.name[0]}`)} style={{ height: 25, width: 50 }} />
+
               <VrButton onClick={() => {
                 this.setState({
                   show: false
@@ -127,6 +131,7 @@ export default class hello_vr extends React.Component {
               }}>
                 <Image source={asset(`${img.name[1]}`)} style={{ height: 50, width: 50, }} />
               </VrButton>
+
             </View>
             <View style={styles.menu_list}>
 
@@ -236,5 +241,4 @@ const styles = StyleSheet.create({
 
 AppRegistry.registerComponent('hello_vr', () => hello_vr);
 AppRegistry.registerComponent('InfoPanel', () => InfoPanel);
-AppRegistry.registerComponent('Museum', () => MuseumInfo());
 
